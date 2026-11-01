@@ -1,3 +1,4 @@
+
 """``ttsbench doctor``: catch every known setup problem before a long run, with a fix."""
 from __future__ import annotations
 
@@ -24,7 +25,8 @@ def _check_imports(results: list) -> None:
             results.append((FAIL, "neutts imports", f"{e}. Fix: pip install -c constraints.txt -e '.[all]'"))
     except Exception as e:  # noqa: BLE001
         results.append((FAIL, "neutts imports", f"{type(e).__name__}: {e}"))
-    for mod, why in (("llama_cpp", "GGUF backbones"), ("onnxruntime", "ONNX codec"), ("faster_whisper", "ASR quality scoring"),
+    for mod, why in (("llama_cpp", "GGUF backbones"), ("gguf", "speech-only vocabulary"), ("onnxruntime", "ONNX codec"),
+                     ("faster_whisper", "ASR quality scoring"),
                      ("speechbrain", "speaker similarity"), ("jiwer", "word error rate"), ("matplotlib", "report charts")):
         try:
             importlib.import_module(mod)

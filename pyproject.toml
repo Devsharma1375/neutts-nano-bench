@@ -1,3 +1,5 @@
+pyproject.toml 
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
@@ -18,8 +20,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# the model stack (torchao pin: torchtune 0.6.1 imports a module removed in torchao 0.16+)
-neutts = ["neutts[all]==1.4.1", "torchao==0.15.0"]
+# the model stack (torchao pin: torchtune 0.6.1 imports a module removed in torchao 0.16+;
+# gguf builds the speech-only backbone for `vocab: speech`)
+neutts = ["neutts[all]==1.4.1", "torchao==0.15.0", "gguf>=0.19"]
 quality = ["faster-whisper>=1.1", "jiwer>=3.0", "num2words>=0.5.13", "speechbrain>=1.0", "matplotlib>=3.8"]
 dev = ["pytest>=8", "ruff>=0.5"]
 all = ["ttsbench[neutts,quality,dev]"]
