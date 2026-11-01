@@ -1,0 +1,23 @@
+2026-11-01 04:11:38,886 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-11-01 04:11:39,124 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neutts-nano-q4-gguf/resolve/main/neutts-nano-Q4_0.gguf "HTTP/1.1 302 Found"
+2026-11-01 04:11:40,652 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/model.onnx "HTTP/1.1 302 Found"
+loaded PerthNet (Implicit) at step 250,000
+2026-11-01 04:11:42,351 ttsbench.worker INFO L09_prefix_reuse loaded in 3.86s (memory 1679 MB)
+2026-11-01 04:11:45,238 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:11:59,339 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:12:16,766 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:12:30,364 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:12:35,230 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:12:41,749 ttsbench.worker INFO L09_prefix_reuse round 0: 10/48 requests
+2026-11-01 04:12:44,811 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:13:16,089 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:13:38,532 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:13:40,049 ttsbench.worker INFO L09_prefix_reuse round 0: 20/48 requests
+2026-11-01 04:14:01,963 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:14:22,547 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:14:35,989 ttsbench.worker INFO L09_prefix_reuse round 0: 30/48 requests
+2026-11-01 04:14:39,756 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:14:57,006 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:15:29,823 ttsbench.worker INFO L09_prefix_reuse round 0: 40/48 requests
+2026-11-01 04:16:00,493 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:16:13,241 ttsbench.worker INFO L09_prefix_reuse round 0: 48/48 requests

@@ -1,0 +1,23 @@
+2026-11-01 03:51:15,327 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-11-01 03:51:15,563 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neutts-nano-q4-gguf/resolve/main/neutts-nano-Q4_0.gguf "HTTP/1.1 302 Found"
+2026-11-01 03:51:17,060 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/model.onnx "HTTP/1.1 302 Found"
+loaded PerthNet (Implicit) at step 250,000
+2026-11-01 03:51:18,853 ttsbench.worker INFO L05_fast_equivalent loaded in 3.92s (memory 1676 MB)
+2026-11-01 03:51:21,983 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:51:35,869 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:51:53,224 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:52:06,758 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:52:11,502 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:52:18,024 ttsbench.worker INFO L05_fast_equivalent round 0: 10/48 requests
+2026-11-01 03:52:20,910 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:52:52,171 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:53:14,495 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:53:16,133 ttsbench.worker INFO L05_fast_equivalent round 0: 20/48 requests
+2026-11-01 03:53:37,507 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:53:57,820 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:54:11,383 ttsbench.worker INFO L05_fast_equivalent round 0: 30/48 requests
+2026-11-01 03:54:14,945 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:54:32,105 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:55:04,826 ttsbench.worker INFO L05_fast_equivalent round 0: 40/48 requests
+2026-11-01 03:55:35,077 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:55:47,834 ttsbench.worker INFO L05_fast_equivalent round 0: 48/48 requests

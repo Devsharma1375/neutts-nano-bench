@@ -1,0 +1,91 @@
+2026-11-01 05:19:22,848 torchao WARNING Skipping import of cpp extensions due to incompatible torch version 2.15.0 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+2026-11-01 05:19:22,852 torchao.kernel.intmm WARNING Warning: Detected no triton, on systems without Triton certain kernels will not work
+W1101 05:19:23.011000 96203 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_compile_all: compiled 'fa_aux' library in 0.001 sec
+ggml_metal_library_compile_all: compiled 'fa_f16' library in 0.001 sec
+ggml_metal_library_compile_all: compiled 'fa_f32' library in 0.001 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_0' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_1' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_0' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_1' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_q8_0' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f16' library in 0.002 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f32' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_0' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_1' library in 0.006 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_0' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_1' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q8_0' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'mul_mv' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'mul_mm' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'quantize' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'softmax' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'norm' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'unary' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'binbcast' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'reduce' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'tri' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'ssm' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'wkv' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'gated_delta_net' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'solve_tri' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'rope' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'conv' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'upscale' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'argsort' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'pool' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'misc' library in 0.003 sec
+ggml_metal_library_compile_all: loaded 34 libraries from embedded data in 0.010 sec (max single = 0.010 sec)
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0 (Apple M4)
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple9  (1009)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal4  (5002)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 12713.12 MB
+2026-11-01 05:19:23,821 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf "HTTP/1.1 200 OK"
+2026-11-01 05:19:24,058 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:206: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+2026-11-01 05:19:24,297 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neutts-nano-q4-gguf/resolve/main/neutts-nano-Q4_0.gguf "HTTP/1.1 302 Found"
+2026-11-01 05:19:30,567 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/config.json "HTTP/1.1 404 Not Found"
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:190: UserWarning: The `resume_download` argument is deprecated and ignored in `hf_hub_download`. Downloads always resume whenever possible.
+  warnings.warn(
+2026-11-01 05:19:30,801 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/model.onnx "HTTP/1.1 302 Found"
+2026-11-01 05:19:31,571 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/meta.yaml "HTTP/1.1 200 OK"
+2026-11-01 05:19:32,357 ttsbench.worker INFO upstream_q4_onnx_metal loaded in 12.53s (memory 1657 MB)
+2026-11-01 05:19:35,247 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:19:42,068 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:19:52,410 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:01,664 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:04,814 ttsbench.worker INFO upstream_q4_onnx_metal round 0: 10/48 requests
+2026-11-01 05:20:09,650 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:20:13,439 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:20:21,738 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:24,211 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:27,253 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:29,953 ttsbench.worker INFO upstream_q4_onnx_metal round 0: 20/48 requests
+2026-11-01 05:20:29,956 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:37,498 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:20:48,140 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:51,283 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:20:59,609 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:21:02,620 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:21:06,756 ttsbench.worker INFO upstream_q4_onnx_metal round 0: 30/48 requests
+2026-11-01 05:21:06,759 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:21:09,879 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:21:43,237 ttsbench.worker INFO upstream_q4_onnx_metal round 0: 40/48 requests
+2026-11-01 05:21:43,240 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:21:56,197 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:22:03,989 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:22:14,968 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:22:21,854 ttsbench.worker INFO upstream_q4_onnx_metal round 0: 48/48 requests

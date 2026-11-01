@@ -1,0 +1,586 @@
+{
+  "run_id": "m4-ladder",
+  "suite": {
+    "name": "ladder",
+    "corpus": "/Users/devsharma/Desktop/open_source_llm/neutts-bench/corpus/sentences.jsonl",
+    "voices": [
+      "jo",
+      "dave"
+    ],
+    "seeds": [
+      0
+    ],
+    "repeats": 1,
+    "warmup": 3,
+    "modes": [
+      "batch",
+      "stream"
+    ],
+    "baseline": "L03_upstream_q4_onnx",
+    "description": "One change per step, from NeuTTS out of the box to the fastest configuration that passes the quality gates.",
+    "buckets": [
+      "medium"
+    ],
+    "rounds": 1,
+    "save_audio": "first",
+    "stream_fidelity": true,
+    "quality": {
+      "asr_model": "small.en",
+      "speaker": true,
+      "mos": false,
+      "watermark": true
+    },
+    "gates": {
+      "wer_abs": 0.02,
+      "spk_sim_drop": 0.02,
+      "mos_drop": 0.1,
+      "fidelity_db": 1.5,
+      "watermark_detect": 1.0
+    },
+    "noise_floor": 0.03,
+    "timeout_s": 7200,
+    "max_items": null,
+    "pacing": "playback",
+    "pacing_gap_s": 0.5,
+    "cooldown_s": 30.0,
+    "configs": [
+      {
+        "name": "L00_upstream_torch",
+        "engine": "reference",
+        "modes": [
+          "batch"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano",
+          "codec": "neuphonic/neucodec"
+        }
+      },
+      {
+        "name": "L01_upstream_torch_mps",
+        "engine": "reference",
+        "modes": [
+          "batch"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano",
+          "codec": "neuphonic/neucodec",
+          "backbone_device": "mps",
+          "codec_device": "mps"
+        }
+      },
+      {
+        "name": "L02_upstream_q8_onnx",
+        "engine": "reference",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q8-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder"
+        }
+      },
+      {
+        "name": "L03_upstream_q4_onnx",
+        "engine": "reference",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder"
+        }
+      },
+      {
+        "name": "L04_upstream_q4_onnx_metal",
+        "engine": "reference",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "backbone_device": "mps"
+        }
+      },
+      {
+        "name": "L05_fast_equivalent",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "reuse_prefix": false,
+          "watermark": "window",
+          "threads": {
+            "backbone": "upstream",
+            "backbone_batch": "upstream",
+            "codec": "upstream"
+          },
+          "onnx": {
+            "allow_spinning": true
+          },
+          "stream": {
+            "pipelined": false,
+            "final_alignment": "upstream"
+          }
+        }
+      },
+      {
+        "name": "L06_threads",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "reuse_prefix": false,
+          "watermark": "window",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": false,
+            "final_alignment": "upstream"
+          }
+        }
+      },
+      {
+        "name": "L07_slice_watermark",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "reuse_prefix": false,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": false,
+            "final_alignment": "upstream"
+          }
+        }
+      },
+      {
+        "name": "L08_pipelined",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "reuse_prefix": false,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "upstream"
+          }
+        }
+      },
+      {
+        "name": "L09_prefix_reuse",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "reuse_prefix": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "upstream"
+          }
+        }
+      },
+      {
+        "name": "L10_speech_vocab",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "upstream"
+          }
+        }
+      },
+      {
+        "name": "L11_fixed_final_chunk",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed"
+          }
+        }
+      },
+      {
+        "name": "L12_flash_attn",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed"
+          }
+        }
+      },
+      {
+        "name": "L13_gpu_prefill",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "prefill_gpu": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed"
+          }
+        }
+      },
+      {
+        "name": "L14_small_first_chunk",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "prefill_gpu": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed",
+            "first_chunk_frames": 10
+          }
+        }
+      },
+      {
+        "name": "L15_gpu_codec",
+        "engine": "fast",
+        "modes": [
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "prefill_gpu": true,
+          "codec_backend": "torch",
+          "codec_device": "mps",
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed",
+            "first_chunk_frames": 10
+          }
+        }
+      },
+      {
+        "name": "X1_int8_codec",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder-int8",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "prefill_gpu": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed",
+            "first_chunk_frames": 10
+          }
+        }
+      },
+      {
+        "name": "X2_q8_backbone",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q8-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "prefill_gpu": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "final_alignment": "fixed",
+            "first_chunk_frames": 10
+          }
+        }
+      }
+    ]
+  },
+  "started": "2026-11-01T03:25:20",
+  "finished": "2026-11-01T04:53:58",
+  "status": {
+    "L00_upstream_torch": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 286.9
+      }
+    ],
+    "L01_upstream_torch_mps": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 213.4
+      }
+    ],
+    "L02_upstream_q8_onnx": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 296.9
+      }
+    ],
+    "L03_upstream_q4_onnx": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 287.0
+      }
+    ],
+    "L04_upstream_q4_onnx_metal": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 289.7
+      }
+    ],
+    "L05_fast_equivalent": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 273.3
+      }
+    ],
+    "L06_threads": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 276.8
+      }
+    ],
+    "L07_slice_watermark": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 275.7
+      }
+    ],
+    "L08_pipelined": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 277.7
+      }
+    ],
+    "L09_prefix_reuse": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 275.1
+      }
+    ],
+    "L10_speech_vocab": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 273.6
+      }
+    ],
+    "L11_fixed_final_chunk": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 271.8
+      }
+    ],
+    "L12_flash_attn": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 269.2
+      }
+    ],
+    "L13_gpu_prefill": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 266.2
+      }
+    ],
+    "L14_small_first_chunk": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 265.6
+      }
+    ],
+    "L15_gpu_codec": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 137.5
+      }
+    ],
+    "X1_int8_codec": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 262.4
+      }
+    ],
+    "X2_q8_backbone": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 278.2
+      }
+    ]
+  },
+  "mock": false,
+  "hardware": "Apple M4 \u00b7 10C/10T (4 perf) \u00b7 16.0 GB RAM \u00b7 macOS-27.0.1-arm64-arm-64bit \u00b7 Python 3.12.16"
+}

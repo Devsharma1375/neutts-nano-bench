@@ -1,0 +1,103 @@
+{
+  "config": {
+    "name": "L15_gpu_codec",
+    "engine": "fast",
+    "modes": [
+      "stream"
+    ],
+    "settings": {
+      "backbone": "neuphonic/neutts-nano-q4-gguf",
+      "codec": "neuphonic/neucodec-onnx-decoder",
+      "vocab": "speech",
+      "reuse_prefix": true,
+      "flash_attn": true,
+      "prefill_gpu": true,
+      "codec_backend": "torch",
+      "codec_device": "mps",
+      "watermark": "slice",
+      "threads": {
+        "backbone": "auto",
+        "backbone_batch": "auto",
+        "codec": 1
+      },
+      "stream": {
+        "pipelined": true,
+        "final_alignment": "fixed",
+        "first_chunk_frames": 10
+      }
+    }
+  },
+  "round": 0,
+  "modes": [
+    "stream"
+  ],
+  "load_s": 16.492862625047565,
+  "mem_metric": "phys_footprint",
+  "mem_after_load_mb": 2926.0,
+  "peak_mem_load_mb": 3287.5,
+  "resolved": {
+    "engine": "fast",
+    "backbone": "neuphonic/neutts-nano-q4-gguf",
+    "codec": "neuphonic/neucodec-onnx-decoder",
+    "vocab": "speech",
+    "reuse_prefix": true,
+    "flash_attn": true,
+    "prefill_gpu": true,
+    "codec_backend": "torch",
+    "codec_device": "mps",
+    "watermark": "slice",
+    "threads": {
+      "backbone": "auto",
+      "backbone_batch": "auto",
+      "codec": 1
+    },
+    "stream": {
+      "pipelined": true,
+      "final_alignment": "fixed",
+      "first_chunk_frames": 10
+    },
+    "resolved": {
+      "gguf": "/Users/devsharma/.cache/huggingface/hub/models--neuphonic--neutts-nano-q4-gguf/snapshots/d775fb6ff95c60a076c68994d9f084473ad9fb86/neutts-nano-Q4_0.gguf",
+      "n_threads": 4,
+      "n_threads_by_mode": {
+        "stream": 4,
+        "batch": 4
+      },
+      "n_threads_batch": 10,
+      "n_gpu_layers": 0,
+      "flash_attn": true,
+      "prefill_gpu": true,
+      "vocab": "speech",
+      "n_vocab_scored": 65544,
+      "codec": {
+        "backend": "torch",
+        "repo": "neuphonic/neucodec",
+        "device": "mps",
+        "dtype": "float32",
+        "params_m": 187.7
+      },
+      "watermark": "slice",
+      "pipelined": true,
+      "stream": {
+        "frames_per_chunk": 25,
+        "first_chunk_frames": 10,
+        "lookforward": 5,
+        "lookback": 50,
+        "overlap": 1,
+        "final_alignment": "fixed"
+      },
+      "reuse_prefix": true,
+      "sampling": {
+        "temperature": 1.0,
+        "top_k": 50,
+        "top_p": 0.95,
+        "min_p": 0.05,
+        "repeat_penalty": 1.0
+      },
+      "speech_ids_contiguous": true
+    }
+  },
+  "cold_ttfa_s": 0.34445550001692027,
+  "cold_mode": "stream",
+  "peak_mem_requests_mb": 2959.4
+}

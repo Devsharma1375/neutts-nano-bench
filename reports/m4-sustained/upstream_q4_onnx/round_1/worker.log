@@ -1,0 +1,42 @@
+2026-11-01 05:36:34,387 torchao WARNING Skipping import of cpp extensions due to incompatible torch version 2.15.0 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+2026-11-01 05:36:34,391 torchao.kernel.intmm WARNING Warning: Detected no triton, on systems without Triton certain kernels will not work
+W1101 05:36:34.558000 98796 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+2026-11-01 05:36:35,184 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf "HTTP/1.1 200 OK"
+2026-11-01 05:36:35,419 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:206: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+2026-11-01 05:36:36,251 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neutts-nano-q4-gguf/resolve/main/neutts-nano-Q4_0.gguf "HTTP/1.1 302 Found"
+2026-11-01 05:36:43,355 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/config.json "HTTP/1.1 404 Not Found"
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:190: UserWarning: The `resume_download` argument is deprecated and ignored in `hf_hub_download`. Downloads always resume whenever possible.
+  warnings.warn(
+2026-11-01 05:36:43,939 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/model.onnx "HTTP/1.1 302 Found"
+2026-11-01 05:36:44,170 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/meta.yaml "HTTP/1.1 200 OK"
+2026-11-01 05:36:44,968 ttsbench.worker INFO upstream_q4_onnx loaded in 13.60s (memory 1832 MB)
+2026-11-01 05:36:48,343 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:36:54,702 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:37:09,639 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:37:14,824 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:37:16,790 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:37:19,958 ttsbench.worker INFO upstream_q4_onnx round 1: 10/48 requests
+2026-11-01 05:37:19,960 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:37:23,169 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:37:29,203 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:37:41,919 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:37:45,657 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:37:53,211 ttsbench.worker INFO upstream_q4_onnx round 1: 20/48 requests
+2026-11-01 05:37:53,213 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:37:57,075 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:38:03,668 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:38:17,273 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:38:27,766 ttsbench.worker INFO upstream_q4_onnx round 1: 30/48 requests
+2026-11-01 05:38:27,768 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:38:30,714 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:38:35,189 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:38:40,008 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:39:08,190 ttsbench.worker INFO upstream_q4_onnx round 1: 40/48 requests
+2026-11-01 05:39:08,193 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:39:11,829 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 05:39:24,636 phonemizer WARNING words count mismatch on 200.0% of the lines (2/1)
+2026-11-01 05:39:38,225 ttsbench.worker INFO upstream_q4_onnx round 1: 48/48 requests

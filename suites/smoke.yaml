@@ -1,0 +1,22 @@
+# Tests the framework itself with the mock engine: no weights, no network, ~30 seconds.
+# Used by `make smoke` and tests/test_e2e.py. Mock numbers say nothing about NeuTTS.
+name: smoke
+corpus: ../corpus/sentences.jsonl
+buckets: [short, medium]
+voices: [mock_a, mock_b]
+seeds: [0]
+repeats: 2
+warmup: 1
+modes: [batch, stream]
+max_items: 4
+baseline: mock_slow
+configs:
+  - name: mock_slow
+    engine: mock
+    decode_tokens_per_s: 400
+    codec_x_realtime: 40
+  - name: mock_fast
+    engine: mock
+    decode_tokens_per_s: 900
+    codec_x_realtime: 80
+    stream: {first_chunk_frames: 10}

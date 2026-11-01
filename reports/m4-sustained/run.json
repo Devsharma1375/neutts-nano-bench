@@ -1,0 +1,188 @@
+{
+  "run_id": "m4-sustained",
+  "suite": {
+    "name": "sustained",
+    "corpus": "/Users/devsharma/Desktop/open_source_llm/neutts-bench/corpus/sentences.jsonl",
+    "voices": [
+      "jo",
+      "dave"
+    ],
+    "seeds": [
+      0
+    ],
+    "repeats": 1,
+    "warmup": 3,
+    "modes": [
+      "batch",
+      "stream"
+    ],
+    "baseline": "upstream_q4_onnx",
+    "description": "Long-form synthesis under sustained load (no pacing), baseline vs the optimised engine.",
+    "buckets": [
+      "long"
+    ],
+    "rounds": 2,
+    "save_audio": "first",
+    "stream_fidelity": true,
+    "quality": {
+      "asr_model": "small.en",
+      "speaker": true,
+      "mos": false,
+      "watermark": true
+    },
+    "gates": {
+      "wer_abs": 0.02,
+      "spk_sim_drop": 0.02,
+      "mos_drop": 0.1,
+      "fidelity_db": 1.5,
+      "watermark_detect": 1.0
+    },
+    "noise_floor": 0.03,
+    "timeout_s": 7200,
+    "max_items": null,
+    "pacing": "none",
+    "pacing_gap_s": 0.0,
+    "cooldown_s": 30.0,
+    "configs": [
+      {
+        "name": "upstream_q4_onnx",
+        "engine": "reference",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder"
+        }
+      },
+      {
+        "name": "upstream_q4_onnx_metal",
+        "engine": "reference",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "backbone_device": "mps"
+        }
+      },
+      {
+        "name": "fast_exact",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "first_chunk_frames": 25,
+            "final_alignment": "fixed"
+          }
+        }
+      },
+      {
+        "name": "fast_best",
+        "engine": "fast",
+        "modes": [
+          "batch",
+          "stream"
+        ],
+        "settings": {
+          "backbone": "neuphonic/neutts-nano-q4-gguf",
+          "codec": "neuphonic/neucodec-onnx-decoder",
+          "vocab": "speech",
+          "reuse_prefix": true,
+          "flash_attn": true,
+          "prefill_gpu": true,
+          "watermark": "slice",
+          "threads": {
+            "backbone": "auto",
+            "backbone_batch": "auto",
+            "codec": 1
+          },
+          "stream": {
+            "pipelined": true,
+            "first_chunk_frames": 10,
+            "final_alignment": "fixed"
+          }
+        }
+      }
+    ]
+  },
+  "started": "2026-11-01T05:15:07",
+  "finished": "2026-11-01T05:39:39",
+  "status": {
+    "upstream_q4_onnx": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 191.7
+      },
+      {
+        "round": 1,
+        "ok": true,
+        "exit": 0,
+        "seconds": 187.8
+      }
+    ],
+    "upstream_q4_onnx_metal": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 183.3
+      },
+      {
+        "round": 1,
+        "ok": true,
+        "exit": 0,
+        "seconds": 163.7
+      }
+    ],
+    "fast_exact": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 140.7
+      },
+      {
+        "round": 1,
+        "ok": true,
+        "exit": 0,
+        "seconds": 128.6
+      }
+    ],
+    "fast_best": [
+      {
+        "round": 0,
+        "ok": true,
+        "exit": 0,
+        "seconds": 120.8
+      },
+      {
+        "round": 1,
+        "ok": true,
+        "exit": 0,
+        "seconds": 114.3
+      }
+    ]
+  },
+  "mock": false,
+  "hardware": "Apple M4 \u00b7 10C/10T (4 perf) \u00b7 16.0 GB RAM \u00b7 macOS-27.0.1-arm64-arm-64bit \u00b7 Python 3.12.16"
+}

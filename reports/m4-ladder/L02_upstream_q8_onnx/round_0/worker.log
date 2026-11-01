@@ -1,0 +1,34 @@
+2026-11-01 03:35:14,547 torchao WARNING Skipping import of cpp extensions due to incompatible torch version 2.15.0 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+2026-11-01 03:35:14,551 torchao.kernel.intmm WARNING Warning: Detected no triton, on systems without Triton certain kernels will not work
+W1101 03:35:14.711000 91084 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+2026-11-01 03:35:16,371 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q8-gguf "HTTP/1.1 200 OK"
+2026-11-01 03:35:16,653 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q8-gguf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:206: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+2026-11-01 03:35:16,923 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neutts-nano-q8-gguf/resolve/main/neutts-nano-Q8_0.gguf "HTTP/1.1 302 Found"
+2026-11-01 03:35:23,499 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/config.json "HTTP/1.1 404 Not Found"
+/Users/devsharma/Desktop/open_source_llm/neutts-bench/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:190: UserWarning: The `resume_download` argument is deprecated and ignored in `hf_hub_download`. Downloads always resume whenever possible.
+  warnings.warn(
+2026-11-01 03:35:23,750 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/model.onnx "HTTP/1.1 302 Found"
+2026-11-01 03:35:23,982 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/meta.yaml "HTTP/1.1 200 OK"
+2026-11-01 03:35:24,805 ttsbench.worker INFO L02_upstream_q8_onnx loaded in 13.46s (memory 1905 MB)
+2026-11-01 03:35:28,457 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:35:42,976 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:36:03,096 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:36:19,030 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:36:23,558 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:36:30,627 ttsbench.worker INFO L02_upstream_q8_onnx round 0: 10/48 requests
+2026-11-01 03:36:33,590 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:37:04,684 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:37:28,012 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:37:29,663 ttsbench.worker INFO L02_upstream_q8_onnx round 0: 20/48 requests
+2026-11-01 03:37:50,379 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:38:11,026 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:38:25,571 ttsbench.worker INFO L02_upstream_q8_onnx round 0: 30/48 requests
+2026-11-01 03:38:28,985 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:38:47,791 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:39:22,042 ttsbench.worker INFO L02_upstream_q8_onnx round 0: 40/48 requests
+2026-11-01 03:39:53,039 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 03:40:07,587 ttsbench.worker INFO L02_upstream_q8_onnx round 0: 48/48 requests

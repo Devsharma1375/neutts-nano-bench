@@ -1,0 +1,36 @@
+{"id": "s01", "bucket": "short", "text": "Good morning, how did you sleep?", "tags": ["question"]}
+{"id": "s02", "bucket": "short", "text": "Turn left at the next corner.", "tags": ["plain"]}
+{"id": "s03", "bucket": "short", "text": "Your order is ready for pickup.", "tags": ["plain"]}
+{"id": "s04", "bucket": "short", "text": "Is this seat taken?", "tags": ["question"]}
+{"id": "s05", "bucket": "short", "text": "The meeting starts at 9:30.", "tags": ["numbers", "time"]}
+{"id": "s06", "bucket": "short", "text": "Call Dr. Patel back today.", "tags": ["abbreviation", "name"]}
+{"id": "s07", "bucket": "short", "text": "Battery at 15% - please charge.", "tags": ["numbers", "punctuation"]}
+{"id": "s08", "bucket": "short", "text": "Thanks, that was really helpful!", "tags": ["exclamation"]}
+{"id": "s09", "bucket": "short", "text": "Set a timer for twelve minutes.", "tags": ["plain"]}
+{"id": "s10", "bucket": "short", "text": "Wait... did you hear that?", "tags": ["punctuation", "question"]}
+{"id": "s11", "bucket": "short", "text": "Rain is expected after lunch.", "tags": ["plain"]}
+{"id": "s12", "bucket": "short", "text": "It costs $42 in total.", "tags": ["numbers", "money"]}
+{"id": "m01", "bucket": "medium", "text": "The train to Manchester has been delayed by about twenty minutes because of a signal fault.", "tags": ["name"]}
+{"id": "m02", "bucket": "medium", "text": "Could you remind me to water the plants when I get home this evening?", "tags": ["question"]}
+{"id": "m03", "bucket": "medium", "text": "On the 3rd of March, Mrs. Okafor moved into the flat on Queen Street.", "tags": ["numbers", "abbreviation", "name"]}
+{"id": "m04", "bucket": "medium", "text": "Preheat the oven to 200 degrees, then bake the bread for thirty-five minutes.", "tags": ["numbers"]}
+{"id": "m05", "bucket": "medium", "text": "I'm not sure that's right; let's check the figures again before we send it.", "tags": ["punctuation"]}
+{"id": "m06", "bucket": "medium", "text": "The museum opens at 10 a.m. and closes at 6 p.m. on weekdays.", "tags": ["numbers", "abbreviation"]}
+{"id": "m07", "bucket": "medium", "text": "Honestly, I didn't expect the ending at all, and I still can't stop thinking about it.", "tags": ["plain"]}
+{"id": "m08", "bucket": "medium", "text": "Your package with tracking number 4 7 1 9 will arrive tomorrow between noon and three.", "tags": ["numbers"]}
+{"id": "m09", "bucket": "medium", "text": "When you reach the roundabout, take the second exit and follow the signs for the airport.", "tags": ["plain"]}
+{"id": "m10", "bucket": "medium", "text": "Are you coming to Priya's birthday dinner on Saturday, or are you still travelling?", "tags": ["question", "name"]}
+{"id": "m11", "bucket": "medium", "text": "The temperature will drop to minus four tonight, so please wrap up warm.", "tags": ["numbers"]}
+{"id": "m12", "bucket": "medium", "text": "She whispered, \"Don't look now,\" and slowly pointed towards the door.", "tags": ["punctuation", "quote"]}
+{"id": "l01", "bucket": "long", "text": "Before you leave the house, make sure the windows are closed, the heating is turned down, and the back door is locked, because the forecast says the storm will arrive around midnight.", "tags": ["list"]}
+{"id": "l02", "bucket": "long", "text": "Our support team is available from Monday to Friday between 8 a.m. and 8 p.m., and you can also reach us by email at any time if your question is not urgent.", "tags": ["numbers", "abbreviation"]}
+{"id": "l03", "bucket": "long", "text": "The library has moved to a new building on Elm Avenue, right next to the old post office, and it now has a quiet reading room, a small caf\u00e9, and twice as many computers.", "tags": ["name", "list"]}
+{"id": "l04", "bucket": "long", "text": "If the results come back positive, we will schedule a follow-up appointment for next week, and the nurse will call you to confirm the exact time and place.", "tags": ["plain"]}
+{"id": "l05", "bucket": "long", "text": "In 2019 the company employed just 12 people, but by 2026 it had grown to more than 1,400 staff across 9 countries.", "tags": ["numbers", "years"]}
+{"id": "l06", "bucket": "long", "text": "I know it sounds strange, but the best way to remember a long list is to imagine walking through your own home and placing each item in a different room.", "tags": ["plain"]}
+{"id": "l07", "bucket": "long", "text": "Please read the instructions carefully, fill in every section of the form, sign it at the bottom, and return it to the front desk before Friday afternoon.", "tags": ["list"]}
+{"id": "l08", "bucket": "long", "text": "Why does the kettle always seem to take twice as long to boil when you are standing right next to it, waiting for your first cup of tea in the morning?", "tags": ["question"]}
+{"id": "l09", "bucket": "long", "text": "Captain Reyes announced that the flight would land about fifteen minutes early, thanks to a strong tailwind, and that the weather in Lisbon was sunny and warm.", "tags": ["name"]}
+{"id": "l10", "bucket": "long", "text": "The recipe calls for two cups of flour, one teaspoon of salt, three eggs, and a generous splash of milk, all whisked together until the batter is smooth.", "tags": ["list", "numbers"]}
+{"id": "l11", "bucket": "long", "text": "After years of practice, he could finally play the whole piece from memory, although his hands still shook a little whenever someone was listening.", "tags": ["plain"]}
+{"id": "l12", "bucket": "long", "text": "If you need to cancel or change your booking, please let us know at least 48 hours in advance, otherwise a fee of $25 may be charged to your card.", "tags": ["numbers", "money"]}

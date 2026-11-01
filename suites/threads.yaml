@@ -1,0 +1,32 @@
+# Thread sweep for the optimised engine: generation threads (backbone) and prompt-reading
+# threads (backbone_batch) separately, because they behave oppositely on hybrid CPUs (an M4:
+# generation is fastest on the 4 performance cores, prompt reading on all 10). Paced, with a
+# cool-down before each config, because thread results are easily confounded by throttling.
+# Edit the counts to match your core count.
+name: threads
+corpus: ../corpus/sentences.jsonl
+buckets: [short, medium]
+voices: [jo]
+seeds: [0]
+repeats: 1
+warmup: 2
+modes: [batch, stream]
+pacing: playback
+pacing_gap_s: 0.5
+cooldown_s: 30
+baseline: t_auto
+defaults:
+  engine: fast
+  backbone: neuphonic/neutts-nano-q4-gguf
+  codec: neuphonic/neucodec-onnx-decoder
+  vocab: speech
+  watermark: slice
+  stream: {pipelined: true, first_chunk_frames: 10}
+configs:
+  - {name: t_auto, threads: {backbone: auto, backbone_batch: auto, codec: 1}}
+  - {name: t_gen2, threads: {backbone: 2, backbone_batch: auto, codec: 1}}
+  - {name: t_gen6, threads: {backbone: 6, backbone_batch: auto, codec: 1}}
+  - {name: t_gen10, threads: {backbone: 10, backbone_batch: auto, codec: 1}}
+  - {name: t_prefill4, threads: {backbone: auto, backbone_batch: 4, codec: 1}}
+  - {name: t_prefill6, threads: {backbone: auto, backbone_batch: 6, codec: 1}}
+  - {name: t_codec2, threads: {backbone: auto, backbone_batch: auto, codec: 2}}

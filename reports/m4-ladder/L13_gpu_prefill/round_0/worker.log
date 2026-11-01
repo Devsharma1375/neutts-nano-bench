@@ -1,0 +1,73 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_compile_all: compiled 'fa_aux' library in 0.001 sec
+ggml_metal_library_compile_all: compiled 'fa_f16' library in 0.001 sec
+ggml_metal_library_compile_all: compiled 'fa_f32' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_0' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_1' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_0' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_1' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_q8_0' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f16' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f32' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_0' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_1' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_0' library in 0.002 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_1' library in 0.006 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q8_0' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'mul_mv' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'mul_mm' library in 0.002 sec
+ggml_metal_library_compile_all: compiled 'quantize' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'softmax' library in 0.002 sec
+ggml_metal_library_compile_all: compiled 'norm' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'unary' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'binbcast' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'reduce' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'tri' library in 0.000 sec
+ggml_metal_library_compile_all: compiled 'ssm' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'wkv' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'gated_delta_net' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'solve_tri' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'rope' library in 0.000 sec
+ggml_metal_library_compile_all: compiled 'conv' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'upscale' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'argsort' library in 0.000 sec
+ggml_metal_library_compile_all: compiled 'pool' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'misc' library in 0.003 sec
+ggml_metal_library_compile_all: loaded 34 libraries from embedded data in 0.010 sec (max single = 0.010 sec)
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0 (Apple M4)
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple9  (1009)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal4  (5002)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 12713.12 MB
+2026-11-01 04:31:48,832 httpx INFO HTTP Request: GET https://huggingface.co/api/models/neuphonic/neutts-nano-q4-gguf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-11-01 04:31:49,420 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neutts-nano-q4-gguf/resolve/main/neutts-nano-Q4_0.gguf "HTTP/1.1 302 Found"
+llama_context: n_ctx_seq (512) > n_ctx_train (0) -- possible training context overflow
+2026-11-01 04:31:55,487 httpx INFO HTTP Request: HEAD https://huggingface.co/neuphonic/neucodec-onnx-decoder/resolve/main/model.onnx "HTTP/1.1 302 Found"
+loaded PerthNet (Implicit) at step 250,000
+2026-11-01 04:31:57,150 ttsbench.worker INFO L13_gpu_prefill loaded in 8.79s (memory 1647 MB)
+2026-11-01 04:31:58,967 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:32:11,292 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:32:29,328 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:32:42,975 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:32:48,128 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:32:54,346 ttsbench.worker INFO L13_gpu_prefill round 0: 10/48 requests
+2026-11-01 04:32:57,835 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:33:26,241 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:33:46,449 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:33:47,497 ttsbench.worker INFO L13_gpu_prefill round 0: 20/48 requests
+2026-11-01 04:34:09,835 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:34:29,310 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:34:41,770 ttsbench.worker INFO L13_gpu_prefill round 0: 30/48 requests
+2026-11-01 04:34:45,924 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:35:01,426 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:35:33,885 ttsbench.worker INFO L13_gpu_prefill round 0: 40/48 requests
+2026-11-01 04:36:02,570 phonemizer WARNING words count mismatch on 100.0% of the lines (1/1)
+2026-11-01 04:36:14,215 ttsbench.worker INFO L13_gpu_prefill round 0: 48/48 requests

@@ -1,0 +1,69 @@
+# The one-command suite: `make bench` (or `python -m ttsbench all suites/default.yaml`).
+# NeuTTS-Nano as Neuphonic documents it, on the CPU and with upstream's own Metal switch,
+# against the optimised engine: once with only output-preserving changes, once with every
+# change that passes the quality gates. Batch and streaming.
+# Requests are paced like a voice app (each waits for the previous audio to finish playing),
+# because fanless laptops throttle within seconds of back-to-back load; suites/sustained.yaml
+# measures that sustained case separately. About 1.5 hours on an M4 MacBook Air including
+# quality scoring; --quick runs a ~5 minute slice.
+name: default
+description: Upstream NeuTTS-Nano (CPU and Metal) vs the optimised engine, batch and streaming.
+corpus: ../corpus/sentences.jsonl
+voices: [jo, dave]          # jo = 13.1 s reference (653 codes), dave = 7.4 s (372 codes)
+seeds: [0]
+repeats: 1
+rounds: 1
+warmup: 3
+pacing: playback            # wait until the previous request's audio would have finished playing
+pacing_gap_s: 0.5
+cooldown_s: 30              # every configuration starts from a recovered (unthrottled) state
+modes: [batch, stream]
+save_audio: first
+stream_fidelity: true
+noise_floor: 0.03
+quality: {asr_model: small.en, speaker: true, mos: false, watermark: true}
+gates: {wer_abs: 0.02, spk_sim_drop: 0.02, mos_drop: 0.10, fidelity_db: 1.5, watermark_detect: 1.0}
+baseline: upstream_q4_onnx
+
+defaults:
+  backbone: neuphonic/neutts-nano-q4-gguf
+  codec: neuphonic/neucodec-onnx-decoder
+
+configs:
+  - name: upstream_q4_onnx         # NeuTTS exactly as documented for minimum latency (CPU)
+    engine: reference
+
+  - name: upstream_q4_onnx_metal   # the same, with upstream's own GPU switch: NeuTTS(backbone_device="mps")
+    engine: reference
+    backbone_device: mps
+
+  - name: fast_exact               # every optimisation that keeps the speech tokens identical to upstream
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, first_chunk_frames: 25, final_alignment: fixed}
+
+  - name: fast_best                # + flash attention, GPU prefill, 0.2 s first chunk (quality-gated)
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, first_chunk_frames: 10, final_alignment: fixed}
+
+  - name: fast_best_gpucodec       # streaming only: + the codec on the GPU (PyTorch NeuCodec on Metal).
+    engine: fast                   # Not for batch: the GPU recompiles for every new utterance length.
+    modes: [stream]
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    codec_backend: torch
+    codec_device: mps
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}   # auto: no core reserved for a GPU codec
+    stream: {pipelined: true, first_chunk_frames: 10, final_alignment: fixed}

@@ -1,0 +1,156 @@
+# The optimisation ladder: each step changes ONE thing relative to the step above, so the
+# report attributes every gain (or loss) to a single decision. Run with:
+#   python -m ttsbench all suites/ladder.yaml          (make ladder)
+# Medium sentences only (~5 s of speech each), paced like a voice app with a cool-down before
+# each step (see suites/default.yaml); about 1.5 hours on an M4 MacBook Air. Use --only for a subset.
+name: ladder
+description: One change per step, from NeuTTS out of the box to the fastest configuration that passes the quality gates.
+corpus: ../corpus/sentences.jsonl
+buckets: [medium]
+voices: [jo, dave]
+seeds: [0]
+repeats: 1
+rounds: 1
+warmup: 3
+pacing: playback
+pacing_gap_s: 0.5
+cooldown_s: 30
+modes: [batch, stream]
+save_audio: first
+stream_fidelity: true
+noise_floor: 0.03
+baseline: L03_upstream_q4_onnx
+
+defaults:
+  backbone: neuphonic/neutts-nano-q4-gguf
+  codec: neuphonic/neucodec-onnx-decoder
+
+configs:
+  # ---- NeuTTS as shipped
+  - name: L00_upstream_torch          # pip install neutts, default arguments: PyTorch bf16 backbone + PyTorch codec, CPU
+    engine: reference
+    backbone: neuphonic/neutts-nano
+    codec: neuphonic/neucodec
+    modes: [batch]                    # upstream cannot stream with a PyTorch backbone
+  - name: L01_upstream_torch_mps      # the same on the Apple GPU, using upstream's own device arguments
+    engine: reference
+    backbone: neuphonic/neutts-nano
+    codec: neuphonic/neucodec
+    backbone_device: mps
+    codec_device: mps
+    modes: [batch]
+  - name: L02_upstream_q8_onnx        # Neuphonic's documented latency path, 8-bit
+    engine: reference
+    backbone: neuphonic/neutts-nano-q8-gguf
+  - name: L03_upstream_q4_onnx        # Neuphonic's documented latency path, 4-bit  <- baseline
+    engine: reference
+  - name: L04_upstream_q4_onnx_metal  # the same with upstream's GPU switch (backbone on Metal, flash attention)
+    engine: reference
+    backbone_device: mps
+
+  # ---- our engine, one change at a time (from L03)
+  - name: L05_fast_equivalent         # same output and same thread settings as upstream: measures the
+    engine: fast                      # leaner implementation alone (token ids, incremental overlap-add)
+    reuse_prefix: false
+    watermark: window
+    threads: {backbone: upstream, backbone_batch: upstream, codec: upstream}
+    onnx: {allow_spinning: true}
+    stream: {pipelined: false, final_alignment: upstream}
+  - name: L06_threads                 # + chosen thread counts, ONNX Runtime spin-waiting off
+    engine: fast
+    reuse_prefix: false
+    watermark: window
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: false, final_alignment: upstream}
+  - name: L07_slice_watermark         # + watermark only the emitted audio (stream mode)
+    engine: fast
+    reuse_prefix: false
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: false, final_alignment: upstream}
+  - name: L08_pipelined               # + codec on a second thread while tokens generate
+    engine: fast
+    reuse_prefix: false
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: upstream}
+  - name: L09_prefix_reuse            # + keep the per-voice prompt prefix in the KV cache
+    engine: fast
+    reuse_prefix: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: upstream}
+  - name: L10_speech_vocab            # + score only a 65,544-row speech head (the 65,537 emittable tokens + 7 padding rows)
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: upstream}
+  - name: L11_fixed_final_chunk       # + correct final-chunk alignment (quality fix)
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: fixed}
+  - name: L12_flash_attn              # + flash attention on the CPU (numerically different: quality-gated)
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: fixed}
+  - name: L13_gpu_prefill             # + read the prompt on the GPU, generate on the CPU (quality-gated)
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: fixed}
+  - name: L14_small_first_chunk       # + 0.2 s first chunk (= fast_best in the default suite)
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: fixed, first_chunk_frames: 10}
+  - name: L15_gpu_codec               # + PyTorch codec on the GPU, streaming only (= fast_best_gpucodec)
+    engine: fast
+    modes: [stream]
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    codec_backend: torch
+    codec_device: mps
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}   # auto: no core reserved for a GPU codec
+    stream: {pipelined: true, final_alignment: fixed, first_chunk_frames: 10}
+
+  # ---- trade-offs on top of L14 (the report compares everything with L03; read these next to L14)
+  - name: X1_int8_codec               # INT8 ONNX decoder: cheaper codec stage, 27 dB SNR vs the FP32 decoder (quality-gated)
+    engine: fast
+    codec: neuphonic/neucodec-onnx-decoder-int8
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: fixed, first_chunk_frames: 10}
+  - name: X2_q8_backbone              # the 8-bit backbone with every engine optimisation
+    engine: fast
+    backbone: neuphonic/neutts-nano-q8-gguf
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, final_alignment: fixed, first_chunk_frames: 10}

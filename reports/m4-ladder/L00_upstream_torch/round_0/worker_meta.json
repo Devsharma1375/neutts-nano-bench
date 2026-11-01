@@ -1,0 +1,40 @@
+{
+  "config": {
+    "name": "L00_upstream_torch",
+    "engine": "reference",
+    "modes": [
+      "batch"
+    ],
+    "settings": {
+      "backbone": "neuphonic/neutts-nano",
+      "codec": "neuphonic/neucodec"
+    }
+  },
+  "round": 0,
+  "modes": [
+    "batch"
+  ],
+  "load_s": 16.11993545794394,
+  "mem_metric": "phys_footprint",
+  "mem_after_load_mb": 2976.0,
+  "peak_mem_load_mb": 3213.8,
+  "resolved": {
+    "engine": "reference",
+    "backbone": "neuphonic/neutts-nano",
+    "codec": "neuphonic/neucodec",
+    "resolved": {
+      "is_gguf": false,
+      "onnx_codec": false,
+      "watermark": true,
+      "upstream_streaming": {
+        "frames_per_chunk": 25,
+        "lookforward": 5,
+        "lookback": 50,
+        "overlap": 1
+      }
+    }
+  },
+  "cold_ttfa_s": 4.4478475420037284,
+  "cold_mode": "batch",
+  "peak_mem_requests_mb": 2982.9
+}

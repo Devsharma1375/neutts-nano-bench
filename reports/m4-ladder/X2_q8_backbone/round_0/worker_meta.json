@@ -1,0 +1,104 @@
+{
+  "config": {
+    "name": "X2_q8_backbone",
+    "engine": "fast",
+    "modes": [
+      "batch",
+      "stream"
+    ],
+    "settings": {
+      "backbone": "neuphonic/neutts-nano-q8-gguf",
+      "codec": "neuphonic/neucodec-onnx-decoder",
+      "vocab": "speech",
+      "reuse_prefix": true,
+      "flash_attn": true,
+      "prefill_gpu": true,
+      "watermark": "slice",
+      "threads": {
+        "backbone": "auto",
+        "backbone_batch": "auto",
+        "codec": 1
+      },
+      "stream": {
+        "pipelined": true,
+        "final_alignment": "fixed",
+        "first_chunk_frames": 10
+      }
+    }
+  },
+  "round": 0,
+  "modes": [
+    "batch",
+    "stream"
+  ],
+  "load_s": 8.928959500044584,
+  "mem_metric": "phys_footprint",
+  "mem_after_load_mb": 1705.8,
+  "peak_mem_load_mb": 1705.8,
+  "resolved": {
+    "engine": "fast",
+    "backbone": "neuphonic/neutts-nano-q8-gguf",
+    "codec": "neuphonic/neucodec-onnx-decoder",
+    "vocab": "speech",
+    "reuse_prefix": true,
+    "flash_attn": true,
+    "prefill_gpu": true,
+    "watermark": "slice",
+    "threads": {
+      "backbone": "auto",
+      "backbone_batch": "auto",
+      "codec": 1
+    },
+    "stream": {
+      "pipelined": true,
+      "final_alignment": "fixed",
+      "first_chunk_frames": 10
+    },
+    "resolved": {
+      "gguf": "/Users/devsharma/.cache/huggingface/hub/models--neuphonic--neutts-nano-q8-gguf/snapshots/16705743fc6e00751987b2e3628aa0ea56fc3880/neutts-nano-Q8_0.gguf",
+      "n_threads": 3,
+      "n_threads_by_mode": {
+        "stream": 3,
+        "batch": 4
+      },
+      "n_threads_batch": 10,
+      "n_gpu_layers": 0,
+      "flash_attn": true,
+      "prefill_gpu": true,
+      "vocab": "speech",
+      "n_vocab_scored": 65544,
+      "codec": {
+        "threads": 1,
+        "opt_level": "all",
+        "allow_spinning": false,
+        "cache_optimized": true,
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "model": "/Users/devsharma/.cache/huggingface/hub/models--neuphonic--neucodec-onnx-decoder/snapshots/ac01424f74ea25b245132252168e2191b3d859fa/model.onnx"
+      },
+      "watermark": "slice",
+      "pipelined": true,
+      "stream": {
+        "frames_per_chunk": 25,
+        "first_chunk_frames": 10,
+        "lookforward": 5,
+        "lookback": 50,
+        "overlap": 1,
+        "final_alignment": "fixed"
+      },
+      "reuse_prefix": true,
+      "sampling": {
+        "temperature": 1.0,
+        "top_k": 50,
+        "top_p": 0.95,
+        "min_p": 0.05,
+        "repeat_penalty": 1.0
+      },
+      "speech_ids_contiguous": true
+    }
+  },
+  "cold_ttfa_s": 0.718241916038096,
+  "cold_mode": "batch",
+  "peak_mem_requests_mb": 2279.6
+}

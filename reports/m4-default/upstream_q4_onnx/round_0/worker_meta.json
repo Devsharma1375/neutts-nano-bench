@@ -1,0 +1,42 @@
+{
+  "config": {
+    "name": "upstream_q4_onnx",
+    "engine": "reference",
+    "modes": [
+      "batch",
+      "stream"
+    ],
+    "settings": {
+      "backbone": "neuphonic/neutts-nano-q4-gguf",
+      "codec": "neuphonic/neucodec-onnx-decoder"
+    }
+  },
+  "round": 0,
+  "modes": [
+    "batch",
+    "stream"
+  ],
+  "load_s": 13.220394834061153,
+  "mem_metric": "phys_footprint",
+  "mem_after_load_mb": 1832.7,
+  "peak_mem_load_mb": 1832.7,
+  "resolved": {
+    "engine": "reference",
+    "backbone": "neuphonic/neutts-nano-q4-gguf",
+    "codec": "neuphonic/neucodec-onnx-decoder",
+    "resolved": {
+      "is_gguf": true,
+      "onnx_codec": true,
+      "watermark": true,
+      "upstream_streaming": {
+        "frames_per_chunk": 25,
+        "lookforward": 5,
+        "lookback": 50,
+        "overlap": 1
+      }
+    }
+  },
+  "cold_ttfa_s": 0.9521091670030728,
+  "cold_mode": "batch",
+  "peak_mem_requests_mb": 4613.6
+}

@@ -1,0 +1,44 @@
+{
+  "config": {
+    "name": "L01_upstream_torch_mps",
+    "engine": "reference",
+    "modes": [
+      "batch"
+    ],
+    "settings": {
+      "backbone": "neuphonic/neutts-nano",
+      "codec": "neuphonic/neucodec",
+      "backbone_device": "mps",
+      "codec_device": "mps"
+    }
+  },
+  "round": 0,
+  "modes": [
+    "batch"
+  ],
+  "load_s": 17.09374962502625,
+  "mem_metric": "phys_footprint",
+  "mem_after_load_mb": 5853.0,
+  "peak_mem_load_mb": 6192.2,
+  "resolved": {
+    "engine": "reference",
+    "backbone": "neuphonic/neutts-nano",
+    "codec": "neuphonic/neucodec",
+    "backbone_device": "mps",
+    "codec_device": "mps",
+    "resolved": {
+      "is_gguf": false,
+      "onnx_codec": false,
+      "watermark": true,
+      "upstream_streaming": {
+        "frames_per_chunk": 25,
+        "lookforward": 5,
+        "lookback": 50,
+        "overlap": 1
+      }
+    }
+  },
+  "cold_ttfa_s": 3.197025583940558,
+  "cold_mode": "batch",
+  "peak_mem_requests_mb": 6173.9
+}

@@ -1,0 +1,96 @@
+{
+  "config": {
+    "name": "L08_pipelined",
+    "engine": "fast",
+    "modes": [
+      "batch",
+      "stream"
+    ],
+    "settings": {
+      "backbone": "neuphonic/neutts-nano-q4-gguf",
+      "codec": "neuphonic/neucodec-onnx-decoder",
+      "reuse_prefix": false,
+      "watermark": "slice",
+      "threads": {
+        "backbone": "auto",
+        "backbone_batch": "auto",
+        "codec": 1
+      },
+      "stream": {
+        "pipelined": true,
+        "final_alignment": "upstream"
+      }
+    }
+  },
+  "round": 0,
+  "modes": [
+    "batch",
+    "stream"
+  ],
+  "load_s": 4.347114541917108,
+  "mem_metric": "phys_footprint",
+  "mem_after_load_mb": 1677.2,
+  "peak_mem_load_mb": 1677.2,
+  "resolved": {
+    "engine": "fast",
+    "backbone": "neuphonic/neutts-nano-q4-gguf",
+    "codec": "neuphonic/neucodec-onnx-decoder",
+    "reuse_prefix": false,
+    "watermark": "slice",
+    "threads": {
+      "backbone": "auto",
+      "backbone_batch": "auto",
+      "codec": 1
+    },
+    "stream": {
+      "pipelined": true,
+      "final_alignment": "upstream"
+    },
+    "resolved": {
+      "gguf": "/Users/devsharma/.cache/huggingface/hub/models--neuphonic--neutts-nano-q4-gguf/snapshots/d775fb6ff95c60a076c68994d9f084473ad9fb86/neutts-nano-Q4_0.gguf",
+      "n_threads": 3,
+      "n_threads_by_mode": {
+        "stream": 3,
+        "batch": 4
+      },
+      "n_threads_batch": 10,
+      "n_gpu_layers": 0,
+      "flash_attn": false,
+      "prefill_gpu": false,
+      "vocab": "full",
+      "n_vocab_scored": 194256,
+      "codec": {
+        "threads": 1,
+        "opt_level": "all",
+        "allow_spinning": false,
+        "cache_optimized": true,
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "model": "/Users/devsharma/.cache/huggingface/hub/models--neuphonic--neucodec-onnx-decoder/snapshots/ac01424f74ea25b245132252168e2191b3d859fa/model.onnx"
+      },
+      "watermark": "slice",
+      "pipelined": true,
+      "stream": {
+        "frames_per_chunk": 25,
+        "first_chunk_frames": 25,
+        "lookforward": 5,
+        "lookback": 50,
+        "overlap": 1,
+        "final_alignment": "upstream"
+      },
+      "reuse_prefix": false,
+      "sampling": {
+        "temperature": 1.0,
+        "top_k": 50,
+        "top_p": 0.95,
+        "min_p": 0.05,
+        "repeat_penalty": 1.0
+      },
+      "speech_ids_contiguous": true
+    }
+  },
+  "cold_ttfa_s": 1.0604601250961423,
+  "cold_mode": "batch",
+  "peak_mem_requests_mb": 2058.7
+}

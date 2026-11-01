@@ -1,0 +1,46 @@
+# Sustained load: long sentences back to back with no pauses, as when reading a long text aloud.
+# On a fanless laptop this is the throttled regime (an M4 MacBook Air drops to about half its
+# burst speed within ~5 s); compare with the paced default suite to see the difference.
+name: sustained
+description: Long-form synthesis under sustained load (no pacing), baseline vs the optimised engine.
+corpus: ../corpus/sentences.jsonl
+buckets: [long]
+voices: [jo, dave]
+seeds: [0]
+repeats: 1
+rounds: 2                   # ABBA: thermal drift matters here, so alternate the order
+warmup: 3
+modes: [batch, stream]
+pacing: none
+cooldown_s: 30
+save_audio: first
+stream_fidelity: true
+noise_floor: 0.03
+baseline: upstream_q4_onnx
+
+defaults:
+  backbone: neuphonic/neutts-nano-q4-gguf
+  codec: neuphonic/neucodec-onnx-decoder
+
+configs:
+  - name: upstream_q4_onnx
+    engine: reference
+  - name: upstream_q4_onnx_metal
+    engine: reference
+    backbone_device: mps
+  - name: fast_exact
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, first_chunk_frames: 25, final_alignment: fixed}
+  - name: fast_best
+    engine: fast
+    vocab: speech
+    reuse_prefix: true
+    flash_attn: true
+    prefill_gpu: true
+    watermark: slice
+    threads: {backbone: auto, backbone_batch: auto, codec: 1}
+    stream: {pipelined: true, first_chunk_frames: 10, final_alignment: fixed}
